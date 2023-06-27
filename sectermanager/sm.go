@@ -5,13 +5,10 @@ package sectermanager
 // https://aws.github.io/aws-sdk-go-v2/docs/getting-started/
 
 import (
-	"context"
 	"cursoGoTweet/awsgo"
+	"encoding/json"
 	"fmt"
-	"log"
-
 	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/secretsmanager"
 	"github.com/lasserfox/cursoGoTweet/models"
 )
@@ -21,35 +18,13 @@ func GetSecret(secretName string) (models.Secret, error) {
 	fmt.Println("> Pidiendo Secrets " + secretName)
 
 	svc := secretsmanager.NewFromConfig(awsgo.Cfg)
-
-}
-
-func main() {
-	secretName := "twitter-go"
-	region := "us-east-1"
-
-	config, err := config.LoadDefaultConfig(context.TODO(), config.WithRegion(region))
+	clave, err := svc.GetSecretValue(awsgo.Ctx, &secretsmanager.GetSecretValueInput{
+		SecretId: aws.String(secretName),
+	})
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err.Error())
+		return datosSecret, err
 	}
-
-	// Create Secrets Manager client
-	svc := secretsmanager.NewFromConfig(config)
-
-	input := &secretsmanager.GetSecretValueInput{
-		SecretId:     aws.String(secretName),
-		VersionStage: aws.String("AWSCURRENT"), // VersionStage defaults to AWSCURRENT if unspecified
-	}
-
-	result, err := svc.GetSecretValue(context.TODO(), input)
-	if err != nil {
-		// For a list of exceptions thrown, see
-		// https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
-		log.Fatal(err.Error())
-	}
-
-	// Decrypts secret using the associated KMS key.
-	var secretString string = *result.SecretString
-
-	// Your code goes here.
+	json.Unmarshal([]byte(*clave.SecretString), &datosSecret)
+	fmt.Println("Lectura de secret OK " + secretName)
 }

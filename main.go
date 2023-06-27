@@ -7,6 +7,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	lambda "github.com/aws/aws-lambda-go/lambda"
 	"github.com/lasserfox/cursoGoTweet/awsgo"
+	"github.com/lasserfox/cursoGoTweet/awsgo"
 	"os"
 )
 
@@ -26,8 +27,9 @@ func EjecutoLambda(ctx context.Context, request events.APIGatewayProxyRequest) (
 				"Context-Type": "application/json",
 			},
 		}
+		return res, nil
 	}
-	return res, nil
+	SecretModel, err := secretmanager.
 }
 
 func ValidoParametros() bool {
