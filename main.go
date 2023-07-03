@@ -2,14 +2,15 @@ package main
 
 import (
 	"context"
-	"cursoGoTweet/awsgo"
 	"cursoGoTweet/bd"
+	"cursoGoTweet/handlers"
 	"cursoGoTweet/models"
 	"fmt"
 	"github.com/aws/aws-lambda-go/events"
 	lambda "github.com/aws/aws-lambda-go/lambda"
 	"github.com/lasserfox/cursoGoTweet/awsgo"
 	"github.com/lasserfox/cursoGoTweet/sectermanager"
+
 	"os"
 	"strings"
 )
@@ -69,6 +70,19 @@ func EjecutoLambda(ctx context.Context, request events.APIGatewayProxyRequest) (
 			},
 		}
 		return res, nil
+	}
+	respAPI := handlers.Manejadores(awsgo.Ctx, request)
+	if respAPI.CustomResp == nil {
+		res = &events.APIGatewayProxyResponse{
+			StatusCode: respAPI.Status,
+			Body:       respAPI.Message,
+			Headers: map[string]string{
+				"Context-Type": "application/json",
+			},
+		}
+		return res, nil
+	} else {
+		return respAPI.CustomResp, nil
 	}
 
 }

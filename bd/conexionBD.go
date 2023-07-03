@@ -2,9 +2,9 @@ package bd
 
 import (
 	"context"
+	"cursoGoTweet/models"
 	"fmt"
-	//"cursoGoTweet/models"
-	"github.com/lasserfox/cursoGoTweet/models"
+	//"github.com/lasserfox/cursoGoTweet/models"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
