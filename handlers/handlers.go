@@ -2,10 +2,10 @@ package handlers
 
 import (
 	"context"
-	"cursoGoTweet/models"
+	//"cursoGoTweet/models"
 	"fmt"
 	"github.com/aws/aws-lambda-go/events"
-	//"github.com/lasserfox/cursoGoTweet/models"
+	"github.com/lasserfox/cursoGoTweet/models"
 )
 
 func Manejadores(ctx context.Context, request events.APIGatewayProxyRequest) models.RespApi {
