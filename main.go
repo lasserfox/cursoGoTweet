@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
-	"cursoGoTweet/bd"
 	"fmt"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/lasserfox/cursoGoTweet/awsgo"
+	"github.com/lasserfox/cursoGoTweet/bd"
 	"github.com/lasserfox/cursoGoTweet/handlers"
 	"github.com/lasserfox/cursoGoTweet/models"
 	"github.com/lasserfox/cursoGoTweet/secretmanager"
