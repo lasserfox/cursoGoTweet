@@ -22,10 +22,10 @@ func GetSecret(secretName string) (models.Secret, error) {
 		SecretId: aws.String(secretName),
 	})
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Println("error al obtener el secret " + err.Error())
 		return datosSecret, err
 	}
 	json.Unmarshal([]byte(*clave.SecretString), &datosSecret)
 	fmt.Println("Lectura de secret OK " + secretName)
-	return datosSecret, err
+	return datosSecret, nil
 }
