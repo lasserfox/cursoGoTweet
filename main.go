@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Hola")
+	fmt.Println("Entrando al main")
 	lambda.Start(EjecutoLambda)
 	awsgo.InicializandoAWS()
 }
