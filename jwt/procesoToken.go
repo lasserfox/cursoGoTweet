@@ -2,7 +2,7 @@ package jwt
 
 import (
 	"errors"
-	jwt "github.com/golang-jwt/jwt/v5"
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/lasserfox/cursoGoTweet/models"
 	"strings"
 )

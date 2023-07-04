@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/aws/aws-lambda-go/events"
-	lambda "github.com/aws/aws-lambda-go/lambda"
+	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/lasserfox/cursoGoTweet/awsgo"
 	"github.com/lasserfox/cursoGoTweet/bd"
 	"github.com/lasserfox/cursoGoTweet/handlers"
