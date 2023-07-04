@@ -16,11 +16,11 @@ func ConectarDB(ctx context.Context) error {
 	user := ctx.Value(models.Key("user")).(string)
 	password := ctx.Value(models.Key("password")).(string)
 	host := ctx.Value(models.Key("host")).(string)
-	fmt.Printf("Url Conexión: mongodb+srv//%s:*****@%s?retryWrites=true&w=majority", user, host)
-	connStr := fmt.Sprintf("mongodb+srv//%s:%s@%s?retryWrites=true&w=majority", user, password, host)
+	fmt.Printf("Url Conexión: mongodb+srv//%s:*****@%s/?retryWrites=true&w=majority", user, host)
+	connStr := "mongodb+srv//" + user + ":" + password + "@" + host + "/?retryWrites=true&w=majority"
 	fmt.Println("constr: " + connStr)
 	fmt.Println("Debería ser: mongodb+srv://user:passw*rd@twitter.oisp1jg.mongodb.net/")
-	var clienOptions = options.Client().ApplyURI("mongodb+srv://user:passw0rd@twitter.oisp1jg.mongodb.net?retryWrites=true&w=majority")
+	var clienOptions = options.Client().ApplyURI(connStr)
 	client, err := mongo.Connect(ctx, clienOptions)
 	if err != nil {
 		fmt.Println(err.Error())
