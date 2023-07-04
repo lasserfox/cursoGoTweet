@@ -16,8 +16,8 @@ import (
 
 func main() {
 	fmt.Println("Entrando al main")
-	lambda.Start(EjecutoLambda)
 	awsgo.InicializandoAWS()
+	lambda.Start(EjecutoLambda)
 }
 
 func EjecutoLambda(ctx context.Context, request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
