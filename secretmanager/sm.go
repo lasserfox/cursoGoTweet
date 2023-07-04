@@ -16,8 +16,8 @@ import (
 func GetSecret(secretName string) (models.Secret, error) {
 	var datosSecret models.Secret
 	fmt.Println("> Pidiendo Secrets " + secretName)
-
 	svc := secretsmanager.NewFromConfig(awsgo.Cfg)
+	fmt.Println("> Config svc creado")
 	clave, err := svc.GetSecretValue(awsgo.Ctx, &secretsmanager.GetSecretValueInput{
 		SecretId: aws.String(secretName),
 	})
@@ -25,6 +25,7 @@ func GetSecret(secretName string) (models.Secret, error) {
 		fmt.Println("error al obtener el secret " + err.Error())
 		return datosSecret, err
 	}
+	fmt.Println("secret conseguida, haciendo unmarshall ")
 	json.Unmarshal([]byte(*clave.SecretString), &datosSecret)
 	fmt.Println("Lectura de secret OK " + secretName)
 	return datosSecret, nil
