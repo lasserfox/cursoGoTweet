@@ -6,6 +6,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/lasserfox/cursoGoTweet/jwt"
 	"github.com/lasserfox/cursoGoTweet/models"
+	"github.com/lasserfox/cursoGoTweet/routers"
 )
 
 func Manejadores(ctx context.Context, request events.APIGatewayProxyRequest) models.RespApi {
