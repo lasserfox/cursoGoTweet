@@ -1,7 +1,6 @@
 package jwt
 
 import (
-	models2 "cursoGoTweet/models"
 	"errors"
 	jwt "github.com/golang-jwt/jwt/v5"
 	"github.com/lasserfox/cursoGoTweet/models"
@@ -11,7 +10,7 @@ import (
 var Email string
 var IDUsuario string
 
-func ProcesoToken(tk string, JWTSign string) (*models2.Claim, bool, string, error) {
+func ProcesoToken(tk string, JWTSign string) (*models.Claim, bool, string, error) {
 	miClave := []byte(JWTSign)
 	var claims models.Claim
 	splitToken := strings.Split(tk, "Bearer")
@@ -29,6 +28,6 @@ func ProcesoToken(tk string, JWTSign string) (*models2.Claim, bool, string, erro
 	if !tkn.Valid {
 		return &claims, false, string(""), errors.New("Token Inválido")
 	}
-	return &claims, false, string(""), nil
+	return &claims, false, string(""), err
 
 }
