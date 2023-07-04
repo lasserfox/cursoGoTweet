@@ -20,7 +20,7 @@ func ConectarDB(ctx context.Context) error {
 	connStr := fmt.Sprintf("mongodb+srv//%s:%s@%s?retryWrites=true&w=majority", user, password, host)
 	fmt.Println("constr: " + connStr)
 	fmt.Println("Debería ser: mongodb+srv://user:passw*rd@twitter.oisp1jg.mongodb.net/")
-	var clienOptions = options.Client().ApplyURI(connStr)
+	var clienOptions = options.Client().ApplyURI("mongodb+srv://user:passw0rd@twitter.oisp1jg.mongodb.net?retryWrites=true&w=majority")
 	client, err := mongo.Connect(ctx, clienOptions)
 	if err != nil {
 		fmt.Println(err.Error())
