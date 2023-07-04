@@ -12,9 +12,11 @@ var MongoCN *mongo.Client
 var DatabaseName string
 
 func ConectarDB(ctx context.Context) error {
+	fmt.Println("Conectado a la DB")
 	user := ctx.Value(models.Key("user")).(string)
 	password := ctx.Value(models.Key("password")).(string)
 	host := ctx.Value(models.Key("host")).(string)
+	fmt.Printf("Url Conexión: mongodb+srv//%s:*****@%s/?retryWrites=true&w=majority", user, host)
 	connStr := fmt.Sprintf("mongodb+srv//%s:%s@%s/?retryWrites=true&w=majority", user, password, host)
 
 	var clienOptions = options.Client().ApplyURI(connStr)
