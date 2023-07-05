@@ -2,10 +2,10 @@ package routers
 
 import (
 	"context"
+	"cursoGoTweet/bd"
+	"cursoGoTweet/models"
 	"encoding/json"
 	"fmt"
-	"github.com/lasserfox/cursoGoTweet/bd"
-	"github.com/lasserfox/cursoGoTweet/models"
 )
 
 func Registro(ctx context.Context) models.RespApi {

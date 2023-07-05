@@ -2,7 +2,7 @@ package bd
 
 import (
 	"context"
-	"github.com/lasserfox/cursoGoTweet/models"
+	"cursoGoTweet/models"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 

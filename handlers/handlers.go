@@ -2,11 +2,11 @@ package handlers
 
 import (
 	"context"
+	"cursoGoTweet/jwt"
+	"cursoGoTweet/models"
+	"cursoGoTweet/routers"
 	"fmt"
 	"github.com/aws/aws-lambda-go/events"
-	"github.com/lasserfox/cursoGoTweet/jwt"
-	"github.com/lasserfox/cursoGoTweet/models"
-	"github.com/lasserfox/cursoGoTweet/routers"
 )
 
 func Manejadores(ctx context.Context, request events.APIGatewayProxyRequest) models.RespApi {
@@ -26,7 +26,8 @@ func Manejadores(ctx context.Context, request events.APIGatewayProxyRequest) mod
 		switch ctx.Value(models.Key("path")).(string) {
 		case "registro":
 			return routers.Registro(ctx)
-
+		case "login":
+			return routers.Login(ctx)
 		}
 	case "GET":
 		switch ctx.Value(models.Key("path")).(string) {
