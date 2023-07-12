@@ -6,6 +6,7 @@ import (
 	"cursoGoTweet/bd"
 	"cursoGoTweet/models"
 	"encoding/base64"
+	"fmt"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -29,11 +30,11 @@ func UploadImage(ctx context.Context, uploadType string, request events.APIGatew
 	var r models.RespApi
 	r.Status = 400
 	IDUsuario := claim.ID.Hex()
-
+	fmt.Println("Entrando en UploadImage")
 	var filename string
 	var usuario models.Usuario
 
-	bucket := aws.String(ctx.Value(models.Key("ucketName")).(string))
+	bucket := aws.String(ctx.Value(models.Key("bucketName")).(string))
 	switch uploadType {
 	case "A":
 		filename = "avatars/" + IDUsuario + ".jpg"
