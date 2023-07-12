@@ -34,6 +34,8 @@ func Manejadores(ctx context.Context, request events.APIGatewayProxyRequest) mod
 			return routers.UploadImage(ctx, "A", request, claim)
 		case "subirBanner":
 			return routers.UploadImage(ctx, "B", request, claim)
+		case "altaRelacion":
+			return routers.AltaRelacion(ctx, request, claim)
 		}
 	case "GET":
 		switch ctx.Value(models.Key("path")).(string) {
