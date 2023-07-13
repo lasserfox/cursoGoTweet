@@ -8,17 +8,13 @@ import (
 	"strconv"
 )
 
-func LeoTweets(request events.APIGatewayProxyRequest) models.RespApi {
+func LeoTweetsSeguidores(request events.APIGatewayProxyRequest, claim models.Claim) models.RespApi {
 	var r models.RespApi
 	r.Status = 400
+	IDUsuario := claim.ID.Hex()
 
-	ID := request.QueryStringParameters["id"]
 	pagina := request.QueryStringParameters["pagina"]
 
-	if len(ID) < 1 {
-		r.Message = "El parámetro ID es obligatorio"
-		return r
-	}
 	if len(pagina) < 1 {
 		pagina = "1"
 	}
@@ -27,7 +23,7 @@ func LeoTweets(request events.APIGatewayProxyRequest) models.RespApi {
 		r.Message = "Debe enviar en numero en el parámetro pagina"
 		return r
 	}
-	tweets, correcto := bd.LeoTweets(ID, int64(pag))
+	tweets, correcto := bd.LeoTweetsSeguidores(IDUsuario, pag)
 	if !correcto {
 		r.Message = "Error al leer los tweets."
 		return r
